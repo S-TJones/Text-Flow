@@ -30,19 +30,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 // Convert the user inputs into correct data types.
-                String Sentence = InputSentence.toString();
-                String stringWidth = String.valueOf(InputWidth);
+                String Sentence = InputSentence.getText().toString();
+                String tempWidth = InputWidth.getText().toString();
                 int Width;
 
+
                 // Checks to see if a width was entered by the user.
-                if (stringWidth.equals("")){
-                    Width = 0;
+                if (!"".equals(tempWidth)){ // Checks if the string is empty
+                    Width = Integer.parseInt(tempWidth);
                 } else {
-                    Width = Integer.parseInt(stringWidth);
+                    Width = 0;
                 }
 
                 //Calls the findFlow method.
-                // It calculates the
+                // It calculates the Rivers
                 String[] lines = findFlow(Sentence, Width);
 
                 // Adds visibility and text to the TextViews
@@ -62,17 +63,20 @@ public class MainActivity extends AppCompatActivity {
         int defaultWidth = 15;
 
         // If the width is zero, the default width is used.
-        if (width == 0){
+        if (width <= 0){
             width = defaultWidth;
         }
 
         wrapped = TextFlow.autoWrap(sentence, width);
-
         String rivers = TextFlow.locateRivers(wrapped);
-        rivers = "Final text && marked maximum flow with red *.\n" + rivers;
+
+        rivers = "Final text && marked maximum flow with red *.\n\n" + rivers;
         output[1] = rivers;
 
-        String goals = "Total words: " + total + ", Best width: " + width + ", Max flow: " + TextFlow.getLongest();
+        // Subtract 1 to exclude the count of the line number
+        // where the typography river was found: Index 0
+        int flow = TextFlow.getLongest() - 1;
+        String goals = "Total words: " + total + ", Best width: " + width + ", Max flow: " + flow;
         output[0] = goals;
 
         return output;
