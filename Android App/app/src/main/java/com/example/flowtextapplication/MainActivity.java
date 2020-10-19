@@ -3,6 +3,7 @@ package com.example.flowtextapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView ResultText = (TextView) findViewById(R.id.ResultTextView);
         final TextView ResultRiver = (TextView) findViewById(R.id.RiverTextView);
+        final TextView Thanks = (TextView) findViewById(R.id.ThanksTextView);
 
         FindSolution.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +52,9 @@ public class MainActivity extends AppCompatActivity {
                 ResultText.setVisibility(View.VISIBLE);
                 ResultText.setText(lines[0]);
                 ResultRiver.setVisibility(View.VISIBLE);
+                ResultRiver.setMovementMethod(new ScrollingMovementMethod()); // Enables scrolling on the TextView
                 ResultRiver.setText(lines[1]);
+                Thanks.setVisibility(View.VISIBLE);
             }
         });
     }
