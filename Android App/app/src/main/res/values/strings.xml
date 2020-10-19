@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FlowText Application</string>
+    <string name="button_prompt">Find Solution!</string>
+    <string name="sentence_prompt">A sentence goes here</string>
+    <string name="instructions">Input your text below</string>
+    <string name="width_prompt">Enter a width for the word wrap.</string>
 </resources>
